@@ -23,7 +23,13 @@ public class ResolutionManager : MonoBehaviour
 
     public void SetRes()
     {
-        Screen.SetResolution(width, height, false); //Passt den Screen auf die festgelegten Werte an
+        Screen.SetResolution(width, height, false); //Passt den Screen auf die festgelegten Werte an      
+    }
+
+    public void SetFull() //Passt den Screen auf Fullscreen an
+    { 
+        Screen.SetResolution(1280, 720, true);
+        Screen.fullScreen = true;
     }
 }
 
