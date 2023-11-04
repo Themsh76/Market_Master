@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIMainScreen : MonoBehaviour
+public class UIStartScreen : MonoBehaviour
 {
     [SerializeField] Button _StartScreen;       // Erstellt Feld, wo man einen Button auswählen kann, aufden das Programm zutrifft
 

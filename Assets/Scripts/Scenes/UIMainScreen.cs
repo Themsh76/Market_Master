@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UIStartScreen : MonoBehaviour
+public class UIMainScreen : MonoBehaviour
 {
-    [SerializeField] Button _newGame;       // Erstellt Feld, wo man einen Button auswählen kann, aufden das Programm zutrifft 
+    [SerializeField] Button _mainScreen;       // Erstellt Feld, wo man einen Button auswählen kann, aufden das Programm zutrifft 
 
     void Start()
     {
-        _newGame.onClick.AddListener(StartNewGame);     // Wartet darauf, dass geklickt wird und führt dann StartNewGame aus
+        _mainScreen.onClick.AddListener(StartNewGame);     // Wartet darauf, dass geklickt wird und führt dann StartNewGame aus
     }
 
     private void StartNewGame()      // Funktion die die Funktion LoadNewGame ausführt
