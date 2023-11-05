@@ -16,6 +16,7 @@ public class UIMainScreen : MonoBehaviour
     {
         ScenesManager.Instance.LoadNewGame();
         //ScenesManager.Instance.LoadScene(ScenesManager.Scene.MainScreen)  -> So kann man eine bestimmte Scene laden lassen
+
     }
 
 }

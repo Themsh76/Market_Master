@@ -23,6 +23,7 @@ public class ScenesManager : MonoBehaviour
     public void LoadScene(Scene scene)      // Funktion die eine bestimmte Scene laden lässt
     {
         SceneManager.LoadScene(scene.ToString());
+        
     }
 
     public void LoadNewGame()       // Funktion, die den Mainscreen lädt

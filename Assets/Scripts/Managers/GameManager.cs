@@ -3,8 +3,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor;
+using UnityEditor.U2D.Aseprite;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
@@ -26,6 +29,10 @@ public class GameManager : MonoBehaviour
     public int holzProSekunde = 1;     // Erwirtschafte Hölzer pro Sekunde
     public int numberOfBuildings;       // Wie viele Gebäude platziert wurden
 
+    public string buildings = "";
+
+    public ToogleActivationOnSceneChange toogle;    //// Leitet eine Instanz von ToogleActivationOnSceneChange ab
+
 
 
     private void Start()
@@ -34,8 +41,12 @@ public class GameManager : MonoBehaviour
         holz = PlayerPrefs.GetInt("holzwert");  // Holt sich den globalen Holzwert 
         gold = PlayerPrefs.GetInt("goldwert");  // Holt sich den globalen Goldwert 
 
+        //PlayerPrefs.SetInt("numberBuildings", 0);     // Zum zurücksetzen der Anzahl der Gebäude
 
-        numberOfBuildings = 0;      // Nummer auf 0 setzen
+        numberOfBuildings = PlayerPrefs.GetInt("numberBuildings");      // Holt sich die Anzahl der Gebäude
+
+        toogle.OnSceneLoaded();   // Aktiviert den Toogle
+
     }
 
 
@@ -69,36 +80,74 @@ public class GameManager : MonoBehaviour
 
             
 
-
+            
 
             if (shortestDistance < 50)    // Schaut, ob das nahste Feld beim Klick nicht befüllt ist
             {
 
                 if (nearestTile.isOccupied == false)
                 {
-                    Instantiate(buildingToPlace, nearestTile.transform.position, Quaternion.identity);  // Setzt das Building ohne Drehung in das Feld
+                  
+                    int pos = Array.IndexOf(tiles, nearestTile);    // Holt sich die Position von der am nächsten Tile
+                    buildings += pos;   // Fügt sie dem String hinzu
+
+                    Instantiate(buildingToPlace, nearestTile.transform.position, Quaternion.identity);  // Setzt das Building ohne Drehung in das Feld                 
                     buildingToPlace = null;     // Entfernt das Building am Cursor 
                     nearestTile.isOccupied = true;      // Setzt das Feld auf dem das Building plaziert auf befüllt
                     Grid.SetActive(false);      // Deaktiviert das Grid
                     customCursor.gameObject.SetActive(false);   // Deaktiviert den Custom Cursor
                     Cursor.visible = true;  // Aktiviert den normalen Cursor 
-                    numberOfBuildings++; 
+
+                    numberOfBuildings++;    
+
+                    SaveBuildingPositions();    // Wie der Name sagt saved die Methode die Position der Buildings
+
+
                 }               
             }  
         }
-        
+
+
 
         if (numberOfBuildings > 0)      // Schaut ob schon etwas platziert wurde
         {
-            if(zähler == 1000)      // Wenn eine Sekunde vergangen ist geht es in die Methode
+            PlayerPrefs.SetInt("numberBuildings", numberOfBuildings);
+  
+            if (zähler == 1000)      // Wenn eine Sekunde vergangen ist geht es in die Methode
             {
                 holz += holzProSekunde*numberOfBuildings;     // Erhöt den Holzwert
                 zähler = 0;     // Setzt den Zähler auf 0
-            }
+            }      
             zähler++;  
         }
     }
 
+
+    private void SaveBuildingPositions()
+    {
+        PlayerPrefs.SetString("build", buildings);      // Speichert die Buildingposition
+    }
+
+
+
+    public void LoadBuildingPositions(Building building)    // Lädt die Buildings und platziert sie auf ihren ursprünglichen Platz
+    {
+        if (PlayerPrefs.HasKey("buildings"))
+        {
+            //PlayerPrefs.SetString("build", "");   // Resettet die Buildings und Grids auf nichts gesetzt 
+            buildings = PlayerPrefs.GetString("build");     // Gibt der Variable den Wert von build
+
+            buildingToPlace = building;     // Legt fest, dass ein Building plaziert werden soll
+
+
+            foreach (char c in buildings)      // Schleife welche schaut welche Buildings platziert sind
+            {
+                int i = c - '0';        // Konvertiert char zu int
+                Instantiate(buildingToPlace, tiles[i].transform.position, Quaternion.identity);   // Platziert buildings auf ihrer vorigen Position.
+                tiles[i].isOccupied = true;     // Setzt die Tiles, auf die etwas platziert wurde auf besetzt
+            }
+        }
+    }
 
 
 

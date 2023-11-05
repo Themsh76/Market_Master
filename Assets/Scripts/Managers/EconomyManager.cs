@@ -12,7 +12,7 @@ public class EconomyManager : MonoBehaviour
     public int holz;    // Variable für den Holzwert
     public Text holzDisplay;    //Variable für die Anzeige des Holzwerts
 
-
+    private int multipilikator = 1; // Wie viel ein Holzstück wert ist
 
 
 
@@ -20,6 +20,9 @@ public class EconomyManager : MonoBehaviour
     {
            holz = PlayerPrefs.GetInt("holzwert");   //Ausklammern falls man den Spielstand zurücksetzen will
            gold = PlayerPrefs.GetInt("goldwert");
+
+       // PlayerPrefs.GetInt("numberBuildings");
+       
     }
 
     
@@ -32,9 +35,9 @@ public class EconomyManager : MonoBehaviour
         PlayerPrefs.SetInt("goldwert", gold);   // Speichert den Goldwert global und für immer
     }
 
-    public void Sell()      // Methode, die das Holz fpr Gold verkauft
+    public void Sell()      // Methode, die das Holz für Gold verkauft
     {
-        gold += holz;
+        gold += holz*multipilikator;
         holz = 0;    
     } 
 }
