@@ -10,6 +10,7 @@ public class UIRessource : MonoBehaviour
     void Start()
     {
         _RessourceScreen.onClick.AddListener(LoadRessourceScreen);      // Wartet darauf, dass geklickt wird und führt dann LoadRessourceScreen aus
+        
     }
 
     private void LoadRessourceScreen()  // Funktion die die Funktion LoadRessource ausführt
