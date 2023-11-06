@@ -18,8 +18,9 @@ public class EconomyManager : MonoBehaviour
 
     void Start()
     {
-           holz = PlayerPrefs.GetInt("holzwert");   //Ausklammern falls man den Spielstand zurücksetzen will
-           gold = PlayerPrefs.GetInt("goldwert");
+
+        holz = PlayerPrefs.GetInt("holzwert");   //Ausklammern falls man den Spielstand zurücksetzen will
+        gold = PlayerPrefs.GetInt("goldwert");
 
        // PlayerPrefs.GetInt("numberBuildings");
        
