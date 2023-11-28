@@ -132,7 +132,7 @@ public class GameManager : MonoBehaviour
 
     public void LoadBuildingPositions(Building building)    // Lädt die Buildings und platziert sie auf ihren ursprünglichen Platz
     {
-        if (PlayerPrefs.HasKey("buildings"))
+        if (PlayerPrefs.HasKey("build"))
         {
             //PlayerPrefs.SetString("build", "");   // Resettet die Buildings und Grids auf nichts gesetzt 
             buildings = PlayerPrefs.GetString("build");     // Gibt der Variable den Wert von build
@@ -142,6 +142,7 @@ public class GameManager : MonoBehaviour
 
             foreach (char c in buildings)      // Schleife welche schaut welche Buildings platziert sind
             {
+                Debug.Log(c);
                 int i = c - '0';        // Konvertiert char zu int
                 Instantiate(buildingToPlace, tiles[i].transform.position, Quaternion.identity);   // Platziert buildings auf ihrer vorigen Position.
                 tiles[i].isOccupied = true;     // Setzt die Tiles, auf die etwas platziert wurde auf besetzt
