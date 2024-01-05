@@ -9,9 +9,12 @@ EditorBuildSettings:
     path: Assets/Scenes/StartScreen.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 1
-    path: Assets/Scenes/MainScreen.unity
+    path: Assets/Scenes/MarketScreen.unity
     guid: ae40eab365827b94a82d7fb29740dffb
   - enabled: 1
-    path: Assets/Scenes/Ressource.unity
+    path: Assets/Scenes/WoodScreen.unity
     guid: 98aa54f494c0c5c43b314eed090c0088
+  - enabled: 1
+    path: Assets/Scenes/StoneScreen.unity
+    guid: 55ed95bb9a0d494459d5077b4c67ef4c
   m_configObjects: {}

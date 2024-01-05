@@ -13,11 +13,8 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
 
-    public int gold;    // Variable für den Goldwert
     public Text goldDisplay;    // Variable für die Anzeige des Goldwerts
-
-    public int holz;    // Variable für den Holzwert
-    public Text holzDisplay;    //Variable für die Anzeige des Holzwerts
+    public Text holzDisplay;    // Variable für die Anzeige des Holzwerts
 
     private Building buildingToPlace;   // Variable für das Gebäude was plaziert werden soll
     public GameObject Grid;     // Object welches das Feld widerspiegelt
@@ -26,40 +23,45 @@ public class GameManager : MonoBehaviour
     public Tile[] tiles;    // Array von Feldern
 
     public int zähler;      // Variable die ms zählt
-    public int holzProSekunde = 1;     // Erwirtschafte Hölzer pro Sekunde
-    public int numberOfBuildings;       // Wie viele Gebäude platziert wurden
 
-    public string buildings = "";
+    [SerializeField]
+    private IntSO WoodMsSO; // Nach wie vielen MS ein Holz erwirtschaftet wird
 
-    public ToogleActivationOnSceneChange toogle;    //// Leitet eine Instanz von ToogleActivationOnSceneChange ab
+    [SerializeField]
+    private IntSO WoodMultiplicatorSO; // Erwirtschafte Hölzer pro Zeiteinheit   
+   
+    [SerializeField]
+    private StringSO PlacedBuildingsSO; // Scriptable Object für die Position der platzierten Gebäude
 
+    public ToogleActivationOnSceneChange toogle;    // Leitet eine Instanz von ToogleActivationOnSceneChange ab
+
+    [SerializeField]
+    private IntSO BuildingsSO; // Wie viele Gebäude platziert wurden
+
+    [SerializeField]
+    private IntSO GoldSO; // Scriptable Object für den Goldwert
+
+    [SerializeField]
+    private IntSO WoodSO; // Scriptable Object für den Holzwert
+
+    [SerializeField]
+    private IntSO PriceWoodMultiplicatorSO; // Wie viel ein Holzstück wert ist
 
 
     private void Start()
-    {    
-        
-        holz = PlayerPrefs.GetInt("holzwert");  // Holt sich den globalen Holzwert 
-        gold = PlayerPrefs.GetInt("goldwert");  // Holt sich den globalen Goldwert 
-
-        //PlayerPrefs.SetInt("numberBuildings", 0);     // Zum zurücksetzen der Anzahl der Gebäude
-
-        numberOfBuildings = PlayerPrefs.GetInt("numberBuildings");      // Holt sich die Anzahl der Gebäude
-
+    {
         toogle.OnSceneLoaded();   // Aktiviert den Toogle
 
     }
 
-
-
+    
+    
 
 
     private void Update()   
     {
-        goldDisplay.text = gold.ToString(); //Updated die Anzeige jede ms 
-        holzDisplay.text = holz.ToString(); //Updated die Anzeige jede ms 
-
-        PlayerPrefs.SetInt("holzwert", holz);   // Speichert den Holzwert global und für immer
-        PlayerPrefs.SetInt("goldwert", gold);   // Speichert den Goldwert global und für immer
+        goldDisplay.text = GoldSO.Value.ToString(); //Updated die Anzeige jede ms 
+        holzDisplay.text = WoodSO.Value.ToString(); //Updated die Anzeige jede ms 
 
 
 
@@ -79,7 +81,7 @@ public class GameManager : MonoBehaviour
             }
 
             
-
+            
             
 
             if (shortestDistance < 50)    // Schaut, ob das nahste Feld beim Klick nicht befüllt ist
@@ -89,7 +91,7 @@ public class GameManager : MonoBehaviour
                 {
                   
                     int pos = Array.IndexOf(tiles, nearestTile);    // Holt sich die Position von der am nächsten Tile
-                    buildings += pos;   // Fügt sie dem String hinzu
+                    PlacedBuildingsSO.Value += pos;   // Fügt die Position dem String hinzu
 
                     Instantiate(buildingToPlace, nearestTile.transform.position, Quaternion.identity);  // Setzt das Building ohne Drehung in das Feld                 
                     buildingToPlace = null;     // Entfernt das Building am Cursor 
@@ -98,9 +100,8 @@ public class GameManager : MonoBehaviour
                     customCursor.gameObject.SetActive(false);   // Deaktiviert den Custom Cursor
                     Cursor.visible = true;  // Aktiviert den normalen Cursor 
 
-                    numberOfBuildings++;    
+                    BuildingsSO.Value++;
 
-                    SaveBuildingPositions();    // Wie der Name sagt saved die Methode die Position der Buildings
 
 
                 }               
@@ -108,14 +109,12 @@ public class GameManager : MonoBehaviour
         }
 
 
-
-        if (numberOfBuildings > 0)      // Schaut ob schon etwas platziert wurde
+        if (BuildingsSO.Value > 0)      // Schaut ob schon etwas platziert wurde
         {
-            PlayerPrefs.SetInt("numberBuildings", numberOfBuildings);
   
-            if (zähler == 1000)      // Wenn eine Sekunde vergangen ist geht es in die Methode
+            if (zähler == WoodMsSO.Value)      // Wenn eine Sekunde vergangen ist geht es in die Methode
             {
-                holz += holzProSekunde*numberOfBuildings;     // Erhöt den Holzwert
+                WoodSO.Value += WoodMultiplicatorSO.Value * BuildingsSO.Value; //numberOfBuildings;     // Erhöt den Holzwert
                 zähler = 0;     // Setzt den Zähler auf 0
             }      
             zähler++;  
@@ -123,31 +122,20 @@ public class GameManager : MonoBehaviour
     }
 
 
-    private void SaveBuildingPositions()
-    {
-        PlayerPrefs.SetString("build", buildings);      // Speichert die Buildingposition
-    }
-
-
 
     public void LoadBuildingPositions(Building building)    // Lädt die Buildings und platziert sie auf ihren ursprünglichen Platz
     {
-        if (PlayerPrefs.HasKey("build"))
-        {
-            //PlayerPrefs.SetString("build", "");   // Resettet die Buildings und Grids auf nichts gesetzt 
-            buildings = PlayerPrefs.GetString("build");     // Gibt der Variable den Wert von build
 
             buildingToPlace = building;     // Legt fest, dass ein Building plaziert werden soll
 
-
-            foreach (char c in buildings)      // Schleife welche schaut welche Buildings platziert sind
+            foreach (char c in PlacedBuildingsSO.Value)      // Schleife welche schaut welche Buildings platziert sind
             {
-                Debug.Log(c);
-                int i = c - '0';        // Konvertiert char zu int
+
+                int i = c - '0';    // Konvertiert char zu int
                 Instantiate(buildingToPlace, tiles[i].transform.position, Quaternion.identity);   // Platziert buildings auf ihrer vorigen Position.
                 tiles[i].isOccupied = true;     // Setzt die Tiles, auf die etwas platziert wurde auf besetzt
+
             }
-        }
     }
 
 
@@ -156,10 +144,10 @@ public class GameManager : MonoBehaviour
     public void BuyBuilding(Building building)  // Funktion, die das platzieren eines Gebäudes möglich macht
     {
 
-        if (gold >= building.cost)      // Schaut ob man genug Gold hat
+        if (GoldSO.Value >= building.cost)      // Schaut ob man genug Gold hat
         {
             Grid.SetActive(true);       // Aktiviert das Grid
-            gold -= building.cost;      // Zieht die Kosten vom Goldwert ab
+            GoldSO.Value -= building.cost;      // Zieht die Kosten vom Goldwert ab
             buildingToPlace = building;     // Legt fest, dass ein Building plaziert werden soll
 
             customCursor.gameObject.SetActive(true);  // Aktiviert Customcursor

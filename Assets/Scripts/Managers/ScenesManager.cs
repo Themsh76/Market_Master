@@ -16,8 +16,9 @@ public class ScenesManager : MonoBehaviour
     public enum Scene
     {
         StartScreen,        // Aufzählung von Scenes für spätere Verwendung -> Wichtig gleiche Reihenfolge wie in den Build settings
-        MainScreen,
-        Ressource
+        MarketScreen,
+        WoodScreen,
+        StoneScreen
     }
 
     public void LoadScene(Scene scene)      // Funktion die eine bestimmte Scene laden lässt
@@ -28,18 +29,18 @@ public class ScenesManager : MonoBehaviour
 
     public void LoadNewGame()       // Funktion, die den Mainscreen lädt
     {
-        SceneManager.LoadScene(Scene.MainScreen.ToString());
+        SceneManager.LoadScene(Scene.MarketScreen.ToString());
     }
 
     public void LoadRessoruce()     // Funktion, die den Ressourcenscreen lädt
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-        SceneManager.LoadScene(Scene.Ressource.ToString());
+        SceneManager.LoadScene(Scene.WoodScreen.ToString());
     }
 
     public void LoadMainScreen()    // Funktion, die den Mainscreen lädt
     {
-        SceneManager.LoadScene(Scene.MainScreen.ToString());
+        SceneManager.LoadScene(Scene.MarketScreen.ToString());
     }
 
     public void LoadStartScreen()       // Funktion, die den Startscreen lädt
@@ -47,4 +48,8 @@ public class ScenesManager : MonoBehaviour
         SceneManager.LoadScene(Scene.StartScreen.ToString());
     }
 
+    public void LoadStoneScreen()
+    {
+        SceneManager.LoadScene(Scene.StoneScreen.ToString());
+    }
 }

@@ -205,7 +205,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 142063004}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 0}
+        m_TargetAssemblyTypeName: ScenesManager, Assembly-CSharp
+        m_MethodName: 
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 0
 --- !u!114 &142063004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1226,10 +1238,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 90582dab0816ccf4e9f8acdce2281941, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gold: 50
   goldDisplay: {fileID: 798561766}
-  holz: 50
   holzDisplay: {fileID: 1083778480}
+  PriceWoodMultiplicatorSO: {fileID: 11400000, guid: aa98978ab719f0f4d8300ba6e47d4e78, type: 2}
+  "z\xE4hler": 0
+  BuildingsSO: {fileID: 11400000, guid: f20a1481a14c69747b66786e4ef265e2, type: 2}
+  GoldSO: {fileID: 11400000, guid: 97dd18bd5ee284e48aa720b594d3c77c, type: 2}
+  WoodSO: {fileID: 11400000, guid: e97a277f0fc2e6b4f8e538182dc79e09, type: 2}
+  PlacedBuildingsSO: {fileID: 11400000, guid: 86a51226bbba51b40b220be9af26ddc7, type: 2}
+  WoodMsSO: {fileID: 11400000, guid: 3640c3f1af690ef47a70e4d578d5ae68, type: 2}
+  WoodMultiplicatorSO: {fileID: 11400000, guid: c8d7c1d08e1c4fc468c716a61ef6ddf8, type: 2}
 --- !u!4 &1725523736
 Transform:
   m_ObjectHideFlags: 0
