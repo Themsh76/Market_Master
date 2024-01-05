@@ -5,14 +5,20 @@ using UnityEngine.UI;
 
 public class Building : MonoBehaviour
 {
-    
-    public int cost = 25; //Variable für die Kosten eínes Gebäudes
-    
+    [SerializeField]
+    private IntSO WoodBuildingsSO; // Wie viele Gebäude platziert wurden
 
-
-
+    public int cost;
     void Update()
     {
-        
+        if (WoodBuildingsSO.Value > 0)
+        {
+            cost = 25 * (1 + WoodBuildingsSO.Value);
+        }
+        else
+        {
+            cost = 25;
+        }
+
     }
 }

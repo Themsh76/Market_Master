@@ -10,13 +10,17 @@ public class EconomyManager : MonoBehaviour
   
     public Text holzDisplay;    //Variable für die Anzeige des Holzwerts
 
+    public Text steinDisplay;   // Variable für die Anzeige des Steinwerts
+
+    private int WoodCount;      // Variable die ms zählt
+
+    private int StoneCount;     // Variable die ms zählt
+
     [SerializeField]
     private IntSO PriceWoodMultiplicatorSO; // Wie viel ein Holzstück wert ist
 
-    public int zähler;  // Variable die ms zählt
-
     [SerializeField]
-    private IntSO BuildingsSO;
+    private IntSO WoodBuildingsSO;  // Wie viele Gebäude platziert wurden
 
     [SerializeField]
     private IntSO GoldSO; // Scriptable Object für den Goldwert
@@ -25,13 +29,32 @@ public class EconomyManager : MonoBehaviour
     private IntSO WoodSO; // Scriptable Object für den Holzwert
 
     [SerializeField]
-    private StringSO PlacedBuildingsSO; // Scriptable Object für die Position der platzierten Gebäude
+    private StringSO WoodPlacedBuildingsSO; // Scriptable Object für die Position der platzierten Gebäude
 
     [SerializeField]
     private IntSO WoodMsSO; // Nach wie vielen MS ein Holz erwirtschaftet wird
 
     [SerializeField]
     private IntSO WoodMultiplicatorSO; // Erwirtschafte Hölzer pro Zeiteinheit
+
+    [SerializeField]
+    private IntSO StoneSO;  // Scriptable Object für den Steinwert
+
+    [SerializeField]
+    private IntSO StoneMultiplicatorSO;     // Erwirtschafte Steine pro Zeiteinheit
+
+    [SerializeField]
+    private IntSO StoneMsSO;    // Nach wie vielen MS ein Stein erwirtschaftet wird
+
+    [SerializeField]
+    private IntSO PriceStoneMultiplicatorSO;    // Wie viel ein Stein wert ist
+
+    [SerializeField]
+    private IntSO StoneBuildingsSO; // Wie viele Gebäude platziert wurden
+
+    [SerializeField]
+    private StringSO StonePlacedBuildingsSO; // Scriptable Object für die Position der platzierten Gebäude
+
 
     void Start()
     {
@@ -43,17 +66,29 @@ public class EconomyManager : MonoBehaviour
     {
         goldDisplay.text = GoldSO.Value.ToString(); //Updated die Anzeige jede ms 
         holzDisplay.text = WoodSO.Value.ToString(); //Updated die Anzeige jede ms 
+        steinDisplay.text = StoneSO.Value.ToString();   //Updated die Anzeige jede ms 
 
 
-        if (BuildingsSO.Value > 0)      // Schaut ob schon etwas platziert wurde
+        if (WoodBuildingsSO.Value > 0)      // Schaut ob schon etwas platziert wurde
         {
 
-            if (zähler == WoodMsSO.Value)      // Wenn eine Sekunde vergangen ist geht es in die Methode
+            if (WoodCount == WoodMsSO.Value)      // Wenn die Zeiteinheit vergangen ist geht es in die Methode
             {
-                WoodSO.Value += WoodMultiplicatorSO.Value * BuildingsSO.Value; //numberOfBuildings;     // Erhöt den Holzwert
-                zähler = 0;     // Setzt den Zähler auf 0
+                WoodSO.Value += WoodMultiplicatorSO.Value * WoodBuildingsSO.Value; // Erhöt den Holzwert
+                WoodCount = 0;     // Setzt den Zähler auf 0
             }
-            zähler++;
+            WoodCount++;
+        }
+
+        if (StoneBuildingsSO.Value > 0)      // Schaut ob schon etwas platziert wurde
+        {
+
+            if (StoneCount == StoneMsSO.Value)      // Wenn die Zeiteinheit vergangen ist geht es in die Methode
+            {
+                StoneSO.Value += StoneMultiplicatorSO.Value * StoneBuildingsSO.Value; // Erhöt den Holzwert
+                StoneCount = 0;     // Setzt den Zähler auf 0
+            }
+            StoneCount++;
         }
 
 
@@ -62,7 +97,9 @@ public class EconomyManager : MonoBehaviour
     public void Sell()      // Methode, die das Holz für Gold verkauft
     {
         GoldSO.Value += WoodSO.Value * PriceWoodMultiplicatorSO.Value;
+        GoldSO.Value += StoneSO.Value * PriceStoneMultiplicatorSO.Value;
         WoodSO.Value = 0;    
+        StoneSO.Value = 0;
     } 
 
     

@@ -168,13 +168,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startwert: {fileID: 0}
-  BuildingsSO: {fileID: 11400000, guid: f20a1481a14c69747b66786e4ef265e2, type: 2}
+  WoodBuildingsSO: {fileID: 11400000, guid: f20a1481a14c69747b66786e4ef265e2, type: 2}
+  WoodPlacedBuildingsSO: {fileID: 11400000, guid: 86a51226bbba51b40b220be9af26ddc7, type: 2}
   GoldSO: {fileID: 11400000, guid: 97dd18bd5ee284e48aa720b594d3c77c, type: 2}
   WoodSO: {fileID: 11400000, guid: e97a277f0fc2e6b4f8e538182dc79e09, type: 2}
-  PlacedBuildingsSO: {fileID: 11400000, guid: 86a51226bbba51b40b220be9af26ddc7, type: 2}
   WoodMsSO: {fileID: 11400000, guid: 3640c3f1af690ef47a70e4d578d5ae68, type: 2}
   WoodMultiplicatorSO: {fileID: 11400000, guid: c8d7c1d08e1c4fc468c716a61ef6ddf8, type: 2}
   PriceWoodMultiplicatorSO: {fileID: 11400000, guid: aa98978ab719f0f4d8300ba6e47d4e78, type: 2}
+  StoneSO: {fileID: 11400000, guid: 8334e27508179254c913659f9730e592, type: 2}
+  StoneMultiplicatorSO: {fileID: 11400000, guid: 6a814af81099b13429f9745df9754291, type: 2}
+  StoneMsSO: {fileID: 11400000, guid: 562e94de89c3e3847bc0b5369c2b1a06, type: 2}
+  PriceStoneMultiplicatorSO: {fileID: 11400000, guid: 22106f5cbd6715d43bdb87f00e66e5a1, type: 2}
+  StoneBuildingsSO: {fileID: 11400000, guid: 3d5e46eb53e594743a87086a601ccad6, type: 2}
+  StonePlacedBuildingsSO: {fileID: 11400000, guid: c05302246d26b8348ba4c2f1dddb74f1, type: 2}
 --- !u!1 &298233455
 GameObject:
   m_ObjectHideFlags: 0
