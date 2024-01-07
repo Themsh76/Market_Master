@@ -19,6 +19,7 @@ public class StoneManager : MonoBehaviour
     public Text buildingCost;   // Instanz zur Anzeige von den Kosten eines Gebäudes
 
     private Steinbruch quarryToPlace;   // Variable für das Gebäude was plaziert werden soll
+    private Steinbruch resetSteinbruch;
     public GameObject Grid;     // Object welches das Feld widerspiegelt
     public CustomCursor customCursor;   // Leitet eine Instanz von Customcursor ab
 
@@ -67,6 +68,12 @@ public class StoneManager : MonoBehaviour
 
     [SerializeField]
     private StringSO StonePlacedBuildingsSO; // Scriptable Object für die Position der platzierten Gebäude
+
+    [SerializeField]
+    private IntSO GlobalMultiplicatorAmount;  // Scriptable Object für den globalen Multiplicator
+
+    public delegate void BuyQuarryExecutedDelegate();   // Definition eines Delegaten  
+    public static event BuyQuarryExecutedDelegate OnFunctionExecuted;   // Deklariert ein Ereignis mit dem oben definierten Delegaten.
 
 
     private void Start()
@@ -134,7 +141,7 @@ public class StoneManager : MonoBehaviour
 
             if (WoodCount == WoodMsSO.Value)      // Wenn die Zeiteinheit vergangen ist geht es in die Methode
             {
-                WoodSO.Value += WoodMultiplicatorSO.Value * WoodBuildingsSO.Value; // Erhöt den Holzwert
+                WoodSO.Value += WoodMultiplicatorSO.Value * WoodBuildingsSO.Value * GlobalMultiplicatorAmount.Value; // Erhöt den Holzwert
                 WoodCount = 0;     // Setzt den Zähler auf 0
             }
             WoodCount++;
@@ -145,7 +152,7 @@ public class StoneManager : MonoBehaviour
 
             if (StoneCount == StoneMsSO.Value)      // Wenn die Zeiteinheit vergangen ist geht es in die Methode
             {
-                StoneSO.Value += StoneMultiplicatorSO.Value * StoneBuildingsSO.Value; // Erhöt den Holzwert
+                StoneSO.Value += StoneMultiplicatorSO.Value * StoneBuildingsSO.Value * GlobalMultiplicatorAmount.Value; // Erhöt den Holzwert
                 StoneCount = 0;     // Setzt den Zähler auf 0
             }
             StoneCount++;
@@ -158,13 +165,13 @@ public class StoneManager : MonoBehaviour
     public void LoadQuarryPositions(Steinbruch steinbruch)    // Lädt die Buildings und platziert sie auf ihren ursprünglichen Platz
     {
 
-        quarryToPlace = steinbruch;     // Legt fest, dass ein Building plaziert werden soll
+        resetSteinbruch = steinbruch;     // Legt fest, dass ein Building plaziert werden soll
 
         foreach (char c in StonePlacedBuildingsSO.Value)      // Schleife welche schaut welche Buildings platziert sind
         {
 
             int i = c - '0';    // Konvertiert char zu int
-            Instantiate(quarryToPlace, tiles[i].transform.position, Quaternion.identity);   // Platziert buildings auf ihrer vorigen Position.
+            Instantiate(resetSteinbruch, tiles[i].transform.position, Quaternion.identity);   // Platziert buildings auf ihrer vorigen Position.
             tiles[i].isOccupied = true;     // Setzt die Tiles, auf die etwas platziert wurde auf besetzt
 
         }
@@ -185,6 +192,8 @@ public class StoneManager : MonoBehaviour
                 customCursor.gameObject.SetActive(true);  // Aktiviert Customcursor
                 customCursor.GetComponent<SpriteRenderer>().sprite = steinbruch.GetComponent<SpriteRenderer>().sprite;    // Gibt den Custom Cursor ein Building was mit dem Cursor mitgeht
                 Cursor.visible = false; // Deaktiviert den normalen Cursor
+
+                OnFunctionExecuted?.Invoke();   // Führt das Ereignis in Verbindung mit dem Delegate aus 
 
             }
         }

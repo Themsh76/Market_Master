@@ -181,6 +181,11 @@ MonoBehaviour:
   PriceStoneMultiplicatorSO: {fileID: 11400000, guid: 22106f5cbd6715d43bdb87f00e66e5a1, type: 2}
   StoneBuildingsSO: {fileID: 11400000, guid: 3d5e46eb53e594743a87086a601ccad6, type: 2}
   StonePlacedBuildingsSO: {fileID: 11400000, guid: c05302246d26b8348ba4c2f1dddb74f1, type: 2}
+  currentLevelSO: {fileID: 11400000, guid: 153bca483d1e3464dab039d11ae7eec9, type: 2}
+  totalExperienceSO: {fileID: 11400000, guid: 01e6585a9f3b9d642bc190825a9a76e1, type: 2}
+  previousLevelsExperienceSO: {fileID: 11400000, guid: f8da536e28d50df4883d6d93d9ce960f, type: 2}
+  nextLevelsExperienceSO: {fileID: 11400000, guid: 3edc34264e0e4274a8db17dde210f931, type: 2}
+  GlobalMultiplicatorAmount: {fileID: 11400000, guid: d8fcde7bb0566dc44ac8a1eddb75de26, type: 2}
 --- !u!1 &298233455
 GameObject:
   m_ObjectHideFlags: 0

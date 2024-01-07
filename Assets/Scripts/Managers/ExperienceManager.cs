@@ -9,58 +9,93 @@ public class ExperienceManager : MonoBehaviour
     [Header("Experience")]
     [SerializeField] AnimationCurve experienceCurve;
 
-    int currentLevel, totalExperience;
-    int previousLevelsExperience, nextLevelsExperience;
+    [SerializeField]
+    private IntSO currentLevelSO;   // Definiert das jetztige XP-Level
+
+    [SerializeField]
+    private IntSO totalExperienceSO;    // Definiert die insgesamten XP
+
+    [SerializeField]
+    private IntSO previousLevelsExperienceSO;   // Definiert die XP, die für das vorherige Level benötigt werden
+
+    [SerializeField]
+    private IntSO nextLevelsExperienceSO;   // Definiert die XP, die für das nächste Level benötigt werden
 
     [Header("Interface")]
-    [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] TextMeshProUGUI experienceText;
-    [SerializeField] Image experienceFill;
+    [SerializeField] TextMeshProUGUI levelText;     // Definiert das es ein Textfeld geben muss 
+    [SerializeField] TextMeshProUGUI experienceText;    // Definiert das es ein Textfeld geben muss 
+    [SerializeField] Image experienceFill;  // Definiert das es ein Image geben muss 
+
+
 
     void Start()
     {
-        UpdateLevel();
+        UpdateLevel();  // Aktualisiert das Level
+
+        // Abonniert die Ereignisse für den Kauf von Gebäuden und Steinbrüchen
+
+        GameManager.OnFunctionExecuted += BuildingBought;
+        StoneManager.OnFunctionExecuted += QuarryBought;
+    }
+
+    private void BuildingBought() // Methode, die aufgerufen wird, wenn ein Gebäude gekauft wird
+    {
+        AddExperience(100); //Vielleicht noch wird mehr desto mehr Gebäude
+    }
+
+    private void QuarryBought() // Methode, die aufgerufen wird, wenn ein Steinbruch gekauft wird
+    {
+        AddExperience(500);
+    }
+
+    private void OnDestroy() //  Methode, welche aufgerufe wird, wenn das Objekt zerstört wird.
+    {
+        // Wichtig! Meldet sich von Ereignissen ab, um Speicherlecks zu vermeiden
+        GameManager.OnFunctionExecuted -= BuildingBought;
+        StoneManager.OnFunctionExecuted -= QuarryBought;
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            AddExperience(5);
-        }
+
     }
 
-    public void AddExperience(int amount)
+    public void AddExperience(int amount) // Methode zum Hinzufügen von Erfahrungspunkten und Überprüfen auf Levelaufstieg
     {
-        totalExperience += amount;
-        CheckForLevelUp();
-        UpdateInterface();
+        totalExperienceSO.Value += amount;  // Fügt die Erfahrungspunkte hinzu
+        CheckForLevelUp();  // Überprüft, ob ein Levelaufstieg erreicht wurde
+        UpdateInterface();  // Aktualisiert die Benutzeroberfläche
     }
 
-    void CheckForLevelUp()
+    void CheckForLevelUp()  // Überprüft, ob ein Levelaufstieg erreicht wurde
     {
-        if (totalExperience >= nextLevelsExperience)
+        
+        while (totalExperienceSO.Value >= nextLevelsExperienceSO.Value) // Solange die gesamten Erfahrungspunkte das nächste Level erreichen oder überschreiten
         {
-            currentLevel++;
-            UpdateLevel();
+            currentLevelSO.Value++; // Erhöhe das aktuelle Level
+            UpdateLevel();  // Aktualisiere das Level
 
             // Vielleicht Level-Up sound noch
         }
     }
 
+    // Aktualisiert das Level und zugehörige Erfahrungspunkte.
     void UpdateLevel()
     {
-        previousLevelsExperience = (int)experienceCurve.Evaluate(currentLevel);
-        nextLevelsExperience = (int)experienceCurve.Evaluate(currentLevel + 1);
-        UpdateInterface();
+        previousLevelsExperienceSO.Value = (int)experienceCurve.Evaluate(currentLevelSO.Value); // Setzt die Erfahrungspunkte für vorheriges und nächstes Level
+        nextLevelsExperienceSO.Value = (int)experienceCurve.Evaluate(currentLevelSO.Value + 1);
+        UpdateInterface();  // Aktualisiert die Benutzeroberfläche
     }
 
+    // Aktualisiere die Benutzeroberfläche mit aktuellen Werten
     void UpdateInterface()
     {
-        int start = totalExperience - previousLevelsExperience;
-        int end = nextLevelsExperience - previousLevelsExperience;
+        // Berechne den Start- und Endwert für den Erfahrungsbalken
+        int start = totalExperienceSO.Value - previousLevelsExperienceSO.Value;
+        int end = nextLevelsExperienceSO.Value - previousLevelsExperienceSO.Value;
 
-        levelText.text = currentLevel.ToString();
+        // Aktualisiere die Textanzeigen auf der Benutzeroberfläche
+        levelText.text = currentLevelSO.Value.ToString();
         experienceText.text = start + " exp / " + end + " exp";
         experienceFill.fillAmount = (float)start / (float)end;
     }

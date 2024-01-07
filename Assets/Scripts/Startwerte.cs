@@ -46,6 +46,22 @@ public class Startwerte : MonoBehaviour
     [SerializeField]
     private StringSO StonePlacedBuildingsSO; // Scriptable Object für die Position der platzierten Gebäude
 
+    [SerializeField]
+    private IntSO currentLevelSO;   // Definiert das jetztige XP-Level
+
+    [SerializeField]
+    private IntSO totalExperienceSO;    // Definiert die insgesamten XP
+
+    [SerializeField]
+    private IntSO previousLevelsExperienceSO;   // Definiert die XP, die für das vorherige Level benötigt werden
+
+    [SerializeField]
+    private IntSO nextLevelsExperienceSO;   // Definiert die XP, die für das nächste Level benötigt werden
+
+    [SerializeField]
+    private IntSO GlobalMultiplicatorAmount;  // Scriptable Object für den globalen Multiplicator
+
+
     public void Startwertefestlegen()
     {
         WoodSO.Value = 50;   // Legt den Startwert der Hölzer fest
@@ -61,5 +77,10 @@ public class Startwerte : MonoBehaviour
         PriceStoneMultiplicatorSO.Value = 25;   // Legt fest wie viel ein Stein wert ist
         StoneBuildingsSO.Value = 0; // Setzt die Anzahl der Steinbrüche auf 0
         StonePlacedBuildingsSO.Value = "";  // Setzt die Positionen der Steinbrüche auf empty
+        totalExperienceSO.Value = 0;    // Setzt die Anfangsxp auf 0
+        currentLevelSO.Value = 0;   // Setzt das Anfangslevel auf 0
+        previousLevelsExperienceSO.Value = 0;   // Setzt den Wert so, dass wenn man ein neues Spiel started sich die Xp resetten
+        nextLevelsExperienceSO.Value = 0;   // Setzt den Wert so, dass wenn man ein neues Spiel started sich die Xp resetten
+        GlobalMultiplicatorAmount.Value = 1;  // Setzt den Gloabal Multiplicator auf 1
     }
 }
