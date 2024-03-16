@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.19607843, g: 0.19607843, b: 0.19607843, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2077,6 +2077,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1908046729}
     m_Modifications:
+    - target: {fileID: 2280979637701744228, guid: 0c76c4f4d135788468741c0df61bf1ed, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280979637701744228, guid: 0c76c4f4d135788468741c0df61bf1ed, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2280979637701744228, guid: 0c76c4f4d135788468741c0df61bf1ed, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5857861083501169768, guid: 0c76c4f4d135788468741c0df61bf1ed, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -2231,6 +2243,18 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1908046729}
     m_Modifications:
+    - target: {fileID: 424835777907539536, guid: 5f3f8e1c6964f6d4d816f4b4b8c029a2, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 424835777907539536, guid: 5f3f8e1c6964f6d4d816f4b4b8c029a2, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 424835777907539536, guid: 5f3f8e1c6964f6d4d816f4b4b8c029a2, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3220345948631627254, guid: 5f3f8e1c6964f6d4d816f4b4b8c029a2, type: 3}
       propertyPath: m_Name
       value: GoldImage
@@ -2419,6 +2443,18 @@ PrefabInstance:
     - target: {fileID: 7914073755118432355, guid: 0fdac0b61f443fe4791f959c5e4a0839, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715969780108873037, guid: 0fdac0b61f443fe4791f959c5e4a0839, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715969780108873037, guid: 0fdac0b61f443fe4791f959c5e4a0839, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8715969780108873037, guid: 0fdac0b61f443fe4791f959c5e4a0839, type: 3}
+      propertyPath: m_Color.r
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

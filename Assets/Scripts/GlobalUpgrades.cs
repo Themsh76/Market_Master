@@ -13,6 +13,9 @@ public class GlobalUpgrades : MonoBehaviour
     private IntSO GlobalMultiplicatorAmount;  // Scriptable Object für den globalen Multiplicator
 
     [SerializeField]
+    private IntSO GlobalSpeedAmount;
+
+    [SerializeField]
     private IntSO StoneMsSO;    // Nach wie vielen MS ein Stein erwirtschaftet wird
 
     [SerializeField]
@@ -24,7 +27,8 @@ public class GlobalUpgrades : MonoBehaviour
     void Start()
     {
         MultiplicatorUpgradeDisplay.text = GlobalMultiplicatorAmount.Value.ToString();
-        SpeedUpgradeDisplay.text = "";
+       // SpeedUpgradeDisplay.text = "";
+        //SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString();
     }
 
     
@@ -38,11 +42,14 @@ public class GlobalUpgrades : MonoBehaviour
         if(StoneMsSO.Value > 1000 && WoodMsSO.Value > 100) 
         {
 
+            GoldSO.Value -= GlobalMultiplicatorAmount.Value * 100;
             WoodMsSO.Value -= 100;      // Noch Anpassungsfähig
             StoneMsSO.Value -= 1000;    // Noch Anpassungsfähig
 
-            SpeedUpgradeDisplay.text = ""; // Updated die Anzeige jede ms 
-            
+           // GlobalSpeedAmount.Value++;
+            //SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString(); // Updated die Anzeige jede ms 
+
+
         }
  
     } 
