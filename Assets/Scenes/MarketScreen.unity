@@ -4712,7 +4712,7 @@ MonoBehaviour:
   SpeedUpgradeDisplay: {fileID: 1570039956}
   MultiplicatorUpgradeDisplay: {fileID: 1347007688}
   GlobalMultiplicatorAmount: {fileID: 11400000, guid: d8fcde7bb0566dc44ac8a1eddb75de26, type: 2}
-  GlobalSpeedAmount: {fileID: 0}
+  GlobalSpeedAmount: {fileID: 11400000, guid: b1d527c0be89ed94dbd3bcb3dde4c6fe, type: 2}
   StoneMsSO: {fileID: 11400000, guid: 562e94de89c3e3847bc0b5369c2b1a06, type: 2}
   WoodMsSO: {fileID: 11400000, guid: 3640c3f1af690ef47a70e4d578d5ae68, type: 2}
   GoldSO: {fileID: 11400000, guid: 97dd18bd5ee284e48aa720b594d3c77c, type: 2}
@@ -5052,9 +5052,9 @@ RectTransform:
   - {fileID: 22325155}
   - {fileID: 853528090}
   - {fileID: 323783289}
-  - {fileID: 296451874}
   - {fileID: 824427060}
   - {fileID: 630860075}
+  - {fileID: 296451874}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}

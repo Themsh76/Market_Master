@@ -27,8 +27,8 @@ public class GlobalUpgrades : MonoBehaviour
     void Start()
     {
         MultiplicatorUpgradeDisplay.text = GlobalMultiplicatorAmount.Value.ToString();
-       // SpeedUpgradeDisplay.text = "";
-        //SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString();
+      
+        SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString();
     }
 
     
@@ -46,8 +46,8 @@ public class GlobalUpgrades : MonoBehaviour
             WoodMsSO.Value -= 100;      // Noch Anpassungsfähig
             StoneMsSO.Value -= 1000;    // Noch Anpassungsfähig
 
-           // GlobalSpeedAmount.Value++;
-            //SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString(); // Updated die Anzeige jede ms 
+            GlobalSpeedAmount.Value++;
+            SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString(); // Updated die Anzeige jede ms 
 
 
         }

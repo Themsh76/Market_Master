@@ -3,7 +3,29 @@ guid: 95168f466715c9841a435745e551fda0
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - goldDisplay: {instanceID: 0}
+  - holzDisplay: {instanceID: 0}
+  - steinDisplay: {instanceID: 0}
+  - buildingCost: {instanceID: 0}
+  - Grid: {instanceID: 0}
+  - customCursor: {instanceID: 0}
+  - WoodMsSO: {instanceID: 0}
+  - WoodMultiplicatorSO: {instanceID: 0}
+  - WoodPlacedBuildingsSO: {instanceID: 0}
+  - toogle: {instanceID: 0}
+  - WoodBuildingsSO: {instanceID: 0}
+  - GoldSO: {instanceID: 0}
+  - WoodSO: {instanceID: 0}
+  - PriceWoodMultiplicatorSO: {instanceID: 0}
+  - StoneSO: {instanceID: 0}
+  - StoneMultiplicatorSO: {instanceID: 0}
+  - StoneMsSO: {instanceID: 0}
+  - PriceStoneMultiplicatorSO: {instanceID: 0}
+  - StoneBuildingsSO: {instanceID: 0}
+  - StonePlacedBuildingsSO: {instanceID: 0}
+  - GlobalMultiplicatorAmount: {instanceID: 0}
+  - GlobalSpeedAmount: {fileID: 11400000, guid: b1d527c0be89ed94dbd3bcb3dde4c6fe, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

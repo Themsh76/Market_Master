@@ -73,6 +73,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     private IntSO GlobalMultiplicatorAmount;  // Scriptable Object für den globalen Multiplicator
 
+    [SerializeField]
+    private IntSO GlobalSpeedAmount;
+
     public delegate void BuyBuildingExecutedDelegate();     // Definition eines Delegaten
     public static event BuyBuildingExecutedDelegate OnFunctionExecuted;     // Deklariert ein Ereignis mit dem oben definierten Delegaten.
 
