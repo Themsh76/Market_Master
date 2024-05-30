@@ -39,12 +39,12 @@ public class GlobalUpgrades : MonoBehaviour
 
     public void UpgradeSpeed()
     {
-        if(StoneMsSO.Value > 1000 && WoodMsSO.Value > 100) 
+        if(GoldSO.Value > 100 * GlobalSpeedAmount.Value) 
         {
 
-            GoldSO.Value -= GlobalMultiplicatorAmount.Value * 100;
-            WoodMsSO.Value -= 100;      // Noch Anpassungsfähig
-            StoneMsSO.Value -= 1000;    // Noch Anpassungsfähig
+            GoldSO.Value -= GlobalSpeedAmount.Value * 100;
+            //WoodMsSO.Value -= 100;      // Noch Anpassungsfähig
+            //StoneMsSO.Value -= 1000;    // Noch Anpassungsfähig
 
             GlobalSpeedAmount.Value++;
             SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString(); // Updated die Anzeige jede ms 
