@@ -7,11 +7,18 @@ class Quest {
         this.progress = 0; //Fortschritt der Quest
         this.completed = false; // Quest abgeschlossen (auf nein gesetzt)
         this.reward = reward; // Belohnung der Quest
+        this.isExpired = false; // Quest abgelaufen (auf nein gesetzt)
+    
+
+    setTimeout(() => {
+            this.isExpired = true; //Quest wird als abgelaufen markiert
+            console.log(`Quest ${this.name} has expired.`); //Quest abgelaufen als Nachricht
+        }, 2000000); //Zeit  nach der die Quest abläuft (ca.30 Minuten)
     }
 
     //Fortschritt der Quest wird aktualisiert
     updateProgress(amount) {
-        if (!this.completed) { // Wenn Quest noch nicht abgeschlossen ist
+        if (!this.completed && !this.isExpired) { // Wenn Quest noch nicht abgeschlossen ist und sie nocht nicht abgelaufen ist -> Zeile unten
             this.progress += amount; // fortschritt aktualisieren
             if (this.progress >= this.target) { // Wenn der Fortschritt das Ziel erreicht oder überschreitet -> Zeile unten
                 this.completed = true; // Quest abgeschlossen
@@ -82,9 +89,11 @@ questBoard.addQuest(Diamond);
 questBoard.updateQuests("Holz", 500);
 questBoard.updateQuests("Stein", 500);
 questBoard.updateQuests("Eisen", 500);
-questBoard.updateQuests("Stein-Holz", 5000);
-questBoard.updateQuests("Eisen-Stein", 5000);
-questBoard.updateQuests("Eisen-Holz", 5000);
+questBoard.updateQuests("Stein-Holz", 8000);
+questBoard.updateQuests("Eisen-Stein", 8000);
+questBoard.updateQuests("Eisen-Holz", 8000);
+questBoard.updateQuests("Gold", 10000);
+questBoard.updateQuests("Diamant", 10000);
 //Aktualisieren der oben erzeugten Quests
 
 
