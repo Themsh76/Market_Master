@@ -62,6 +62,8 @@ let ironQuest = new Quest("Eisen", 500, 100);
 let Stonewood = new Quest("Stein-Holz", 8000, 2000); 
 let Ironstone = new Quest("Eisen-Stein", 8000, 2000);
 let Ironwood = new Quest("Eisen-Holz", 8000, 2000);
+let Gold = new Quest("Gold", 10000, 3000);
+let Diamond = new Quest("Diamant", 10000, 3000);
 //Quests werden erstellt
 
 let questBoard = new QuestBoard();
@@ -73,6 +75,8 @@ questBoard.addQuest(ironQuest);
 questBoard.addQuest(Stonewood);
 questBoard.addQuest(Ironstone);
 questBoard.addQuest(Ironwood);
+questBoard.addQuest(Gold);
+questBoard.addQuest(Diamond);
 //Quest zum Board hinzufügen
 
 questBoard.updateQuests("Holz", 500);
