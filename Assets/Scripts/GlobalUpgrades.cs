@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -27,19 +26,19 @@ public class GlobalUpgrades : MonoBehaviour
     void Start()
     {
         MultiplicatorUpgradeDisplay.text = GlobalMultiplicatorAmount.Value.ToString();
-      
+
         SpeedUpgradeDisplay.text = GlobalSpeedAmount.Value.ToString();
     }
 
-    
+
     void Update()
     {
-        
+
     }
 
     public void UpgradeSpeed()
     {
-        if(GoldSO.Value > 100 * GlobalSpeedAmount.Value) 
+        if (GoldSO.Value > 100 * GlobalSpeedAmount.Value)
         {
 
             GoldSO.Value -= GlobalSpeedAmount.Value * 100;
@@ -51,18 +50,18 @@ public class GlobalUpgrades : MonoBehaviour
 
 
         }
- 
-    } 
 
-    public void MultiplicatorUpgrade() 
+    }
+
+    public void MultiplicatorUpgrade()
     {
-        if(GoldSO.Value > 100 * GlobalMultiplicatorAmount.Value)
+        if (GoldSO.Value > 100 * GlobalMultiplicatorAmount.Value)
         {
             GoldSO.Value -= GlobalMultiplicatorAmount.Value * 100;
 
             GlobalMultiplicatorAmount.Value++;
             MultiplicatorUpgradeDisplay.text = GlobalMultiplicatorAmount.Value.ToString();
-        }      
+        }
 
     }
 
