@@ -1,0 +1,29 @@
+class Player {
+    constructor(name) {
+        this.name = name;
+        this.lastLogin = null;
+        this.consecutiveLogins = 0;
+        this.reward = 0;
+    }
+
+    dailyReward() {
+        const today = new Date().setHours(0, 0, 0, 0); //setzt die Zeit auf 0, damit nur das Datum verglichen wird
+
+        if (this.lastLogin !== today) { //Überprüft ob letzter Login heute war, wenn nicht-> Zeile unten
+            if (this.lastLogin === today - 86400000) { // Überprüft ob letzter Login gestern war, wenn ja-> Zeile unten (86400000 = 24h in ms)
+                this.consecutiveLogins++; //dann wird die Anzahl der Logins um 1 erhöht..
+            } else {
+                this.consecutiveLogins = 1; //wenn nicht, dann wird die Anzahl der Logins auf 1 gesetzt
+            }
+
+            this.reward += this.consecutiveLogins * 50; //Belohnung ist die Anzahl der Logins mal 50
+            this.lastLogin = today; //Login wird auf heute gesetzt
+            console.log(`Welcome back ${this.name}! You have been awarded ${this.reward} coins for logging in ${this.consecutiveLogins} days in a row!`); //Ausgabe der Belohnung
+        }
+    }
+}
+
+
+let playerName = prompt("Please enter your name:"); //Spieler muss seinen Namen eingeben
+let player = new Player(playerName); //Spieler wird erstellt, der den eigenen Namen besitzt
+player.dailyReward(); //erhält den oben festgelegten Bonus
