@@ -10,37 +10,39 @@ class Character {
     
 }
 
-let character1 = new Character('Masjamin', 1, './Assets/Sprites/NPCs/Main-Character-1.png'); //Main Character bekommt Namen-Mix aus allen Projektmitgliedern 
-let character2 = new Character('Dr.Schmied', 10, './Assets/Sprites/NPCs/NPC-WerksattSchmiede.png'); //Charakter 2 bekommt Namen
-let character3 = new Character('Dr.Dorfmeister', 15, './Assets/Sprites/NPCs/NPC Bewohner.png'); //Charakter 3 bekommt Namen
-let character4 = new Character('Dr.Tier', 30, './Assets/Sprites/NPCs/NPC-Tier(musste sein).png');//Charakter 4 bekommt Namen
+const character1 = new Character('Masjamin', 1, './Assets/Sprites/NPCs/Main-Character-1.png'); //Main Character bekommt Namen-Mix aus allen Projektmitgliedern 
+const character2 = new Character('Dr.Schmied', 10, './Assets/Sprites/NPCs/NPC-WerksattSchmiede.png'); //Charakter 2 bekommt Namen
+const character3 = new Character('Dr.Dorfmeister', 15, './Assets/Sprites/NPCs/NPC Bewohner.png'); //Charakter 3 bekommt Namen
+const character4 = new Character('Dr.Tier', 30, './Assets/Sprites/NPCs/NPC-Tier(musste sein).png');//Charakter 4 bekommt Namen
 
+class Player {
+    constructor(level) {
+        this.level = level;
+    }
 
-
-
-
-selectCharacter(character); {
-    
+    selectCharacter(character) {
         if (this.level >= character.levelRequired) {
             this.character = character;
         } else {
-            console.log(`You need to be at least level ${character.levelRequired} to select this character.`);
+           throw new Error(`You need to be at least level ${character.levelRequired} to select this character.`);
         }
-}
-    //Wenn das Spielerlevel hoch genug ist, wird der Character ausgewählt den man mit den Spielerlevel haben kann, ansonsten wird eine Fehlermeldung ausgegeben, dass man ein zu niedriges Level hat.
+    }
 
-showAvailableCharacters(characters); {
+    showAvailableCharacters(characters) {
         console.log('Available characters:');
         characters.forEach(character => {
             if (this.level >= character.levelRequired) {
                 console.log(character.name);
             }
         });
+    }
 }
-// Die Liste aller möglichen(4) Charactere wird durchlaufen und überprüft, ob das Level hoch genug ist um diesen Character zu bekommen. Wenn true, dann erfolgt der Name des Character
-   
-        
-    
-    let characters = [character1, character2, character3, character4]; //Liste der Charactere wird characters zugeordnet
 
-    player.showAvailableCharacters(characters); //Alle verfügbaren Characters
+const characters = new Map();
+characters.set(character1.name, character1);
+characters.set(character2.name, character2);
+characters.set(character3.name, character3);
+characters.set(character4.name, character4); //Liste der Charactere wird characters zugeordnet
+
+let player = new Player(5);
+player.showAvailableCharacters(characters); //Alle verfügbaren Characters
