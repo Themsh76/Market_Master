@@ -13,10 +13,9 @@ namespace cardspace
         public int holz;
         public int stein;
 
-        public void Print ()
+        public void Print()
         {
-            UnityEngine.Debug.Log(gold + ":" +  exp);
+            UnityEngine.Debug.Log(gold + ":" + exp);
         }
-
     }
 }
