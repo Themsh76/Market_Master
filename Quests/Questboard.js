@@ -86,9 +86,9 @@ questBoard.addQuest(Gold);
 questBoard.addQuest(Diamond);
 //Quest zum Board hinzufügen
 
-questBoard.updateQuests("Holz", 500);
-questBoard.updateQuests("Stein", 500);
-questBoard.updateQuests("Eisen", 500);
+questBoard.updateQuests("Holz", 1000);
+questBoard.updateQuests("Stein", 1000);
+questBoard.updateQuests("Eisen", 1000);
 questBoard.updateQuests("Stein-Holz", 8000);
 questBoard.updateQuests("Eisen-Stein", 8000);
 questBoard.updateQuests("Eisen-Holz", 8000);
