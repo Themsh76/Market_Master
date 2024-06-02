@@ -65,14 +65,14 @@ public class Startwerte : MonoBehaviour
     public void Startwertefestlegen()
     {
         WoodSO.Value = 50;   // Legt den Startwert der Hölzer fest
-        GoldSO.Value = 50000;   // Legt den Startwert des Golds fest
+        GoldSO.Value = 300;   // Legt den Startwert des Golds fest
         WoodBuildingsSO.Value = 0;  // Setzt die Anzahl der Gebäude auf 0
         WoodPlacedBuildingsSO.Value = "";   // Setzt die Positionen der Gebäude auf empty
-        WoodMsSO.Value = 1000;  // Legt fest nach wie vilen ms Holz erwirtschaftet werden soll
+        WoodMsSO.Value = 1000;  // Legt fest nach wie vielen ms Holz erwirtschaftet werden soll
         WoodMultiplicatorSO.Value = 1;  // Legt fest wie viel Holz pro Zyklus erwirtschaftet werden soll
         PriceWoodMultiplicatorSO.Value = 1; // Legt fest wie viel ein Holzstück wert ist
         StoneSO.Value = 0;  // Legt den Startwert der Steine fest
-        StoneMsSO.Value = 10000;    // Legt fest nach wie vilen ms Stein erwirtschaftet werden soll
+        StoneMsSO.Value = 5000;    // Legt fest nach wie vilen ms Stein erwirtschaftet werden soll
         StoneMultiplicatorSO.Value = 1; // Legt fest wie viel Stein pro Zyklus erwirtschaftet werden soll
         PriceStoneMultiplicatorSO.Value = 25;   // Legt fest wie viel ein Stein wert ist
         StoneBuildingsSO.Value = 0; // Setzt die Anzahl der Steinbrüche auf 0
@@ -83,4 +83,5 @@ public class Startwerte : MonoBehaviour
         nextLevelsExperienceSO.Value = 0;   // Setzt den Wert so, dass wenn man ein neues Spiel started sich die Xp resetten
         GlobalMultiplicatorAmount.Value = 1;  // Setzt den Gloabal Multiplicator auf 1
     }
+
 }

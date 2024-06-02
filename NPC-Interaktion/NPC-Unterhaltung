@@ -1,7 +1,7 @@
 class NPC {
     constructor(name, resourceTips) {
         this.name = name;
-        this.resourceTips = resourceTips; 
+        this.resourceTips = resourceTips;
     }
 
     giveResourceTips() {
@@ -22,12 +22,10 @@ class Player {
     }
 }
 
-let Schmied = new NPC('Schmied', 'Du hast noch genügend Geld übrig um Bäume zu pflanzen!');
 let Hund = new NPC('Hund', 'Ich hätte gerne paar Diamanten für meine neue Halskette! Könntest du mir vielleicht welche besorgen?');
 let Arbeiter = new NPC('Arbeiter', 'Kannst du uns bei unseren Hausbau helfen. Wir bräuchten dafür dringend Steine.');
 
 let player = new Player('Masjamin');
 
-player.encounterNPC(Schmied);
 player.encounterNPC(Hund);
 player.encounterNPC(Arbeiter);
