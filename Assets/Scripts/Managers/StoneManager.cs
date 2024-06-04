@@ -152,7 +152,7 @@ public class StoneManager : MonoBehaviour
 
             if (StoneCount == StoneMsSO.Value)      // Wenn die Zeiteinheit vergangen ist geht es in die Methode
             {
-                StoneSO.Value += StoneMultiplicatorSO.Value * StoneBuildingsSO.Value * GlobalMultiplicatorAmount.Value; // Erhöt den Holzwert
+                StoneSO.Value += StoneMultiplicatorSO.Value * StoneBuildingsSO.Value * GlobalMultiplicatorAmount.Value; // Erhöt den Steinwert
                 StoneCount = 0;     // Setzt den Zähler auf 0
             }
             StoneCount++;

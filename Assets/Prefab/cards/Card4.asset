@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c2fd11950eb43a840a00f321546b9996, type: 3}
   m_Name: Card4
   m_EditorClassIdentifier: 
-  gold: 50
-  exp: 44
-  holz: 34
+  gold: 450
+  exp: 150
+  holz: 500
   stein: 0
