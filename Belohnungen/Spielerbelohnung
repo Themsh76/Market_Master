@@ -16,7 +16,8 @@ class Player {
                 this.consecutiveLogins = 1; //wenn nicht, dann wird die Anzahl der Logins auf 1 gesetzt
             }
 
-            this.reward += this.consecutiveLogins * 50; //Belohnung ist die Anzahl der Logins mal 50
+            let rewardMultiplier = this.consecutiveLogins % 2 === 0 ? 2 : 1; 
+            this.reward += this.consecutiveLogins * 50 * rewardMultiplier; //Belohnung ist die Anzahl der Logins mal 50
             this.lastLogin = today; //Login wird auf heute gesetzt
             console.log(`Welcome back ${this.name}! You have been awarded ${this.reward} coins for logging in ${this.consecutiveLogins} days in a row!`); //Ausgabe der Belohnung
         }
