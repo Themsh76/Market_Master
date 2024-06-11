@@ -4,6 +4,7 @@ using TMPro;
 using cardspace;
 using System.Collections.Generic;
 
+
 public class Converter : MonoBehaviour
 {
     public List<Card> cards; // List of all card scriptable objects
@@ -17,6 +18,7 @@ public class Converter : MonoBehaviour
     [SerializeField] private IntSO StoneAmount; // Scriptable Object für den Steinbestand
     [SerializeField] private IntSO ExpAmount; // Scriptable Object für die Erfahrungspunkte
     [SerializeField] private ExperienceManager experienceManager; // Referenz auf den ExperienceManager
+    [SerializeField] private GameObject allQuestsCompletedPanel; // UI-Panel, das angezeigt wird, wenn alle Quests abgeschlossen sind
 
     private HashSet<Card> completedCards = new HashSet<Card>(); // HashSet to store completed cards
     private Dictionary<Card, GameObject> cardToUIPrefabMap = new Dictionary<Card, GameObject>(); // Map cards to their UI prefabs
@@ -31,8 +33,7 @@ public class Converter : MonoBehaviour
             cardToUIDonePrefabMap[cards[i]] = questUIDonePrefabs[i];
         }
 
-       
-       LoadCompletedQuests();
+        LoadCompletedQuests();
         UpdateDisplays();
     }
 
@@ -85,6 +86,9 @@ public class Converter : MonoBehaviour
 
             SaveCompletedQuests();
 
+            // Überprüfe, ob alle Quests abgeschlossen sind
+            CheckAllQuestsCompleted();
+
             // Optional: Andere Systeme benachrichtigen oder Events auslösen
             NotifyQuestCompletion();
         }
@@ -99,7 +103,6 @@ public class Converter : MonoBehaviour
         PlayerPrefs.DeleteKey("CompletedQuests");
         PlayerPrefs.Save();
     }
-
 
     void SaveCompletedQuests()
     {
@@ -139,12 +142,19 @@ public class Converter : MonoBehaviour
             }
         }
     }
-    
+
     void NotifyQuestCompletion()
     {
         // Optional: Andere Systeme benachrichtigen oder Events auslösen
     }
 
+    void CheckAllQuestsCompleted()
+    {
+        if (completedCards.Count == cards.Count)
+        {
+            allQuestsCompletedPanel.SetActive(true);
+        }
+    }
 
     public void ResetQuests()
     {
@@ -178,6 +188,4 @@ public class Converter : MonoBehaviour
         // Reset saved completed quests
         ResetCompletedQuests();
     }
-
-
 }
